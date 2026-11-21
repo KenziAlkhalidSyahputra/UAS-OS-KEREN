@@ -1,1 +1,10 @@
+config/ssh/id_ed25519
+config/ssh/id_ed25519.pub
+config/ssh/authorized_keys
 
+backup-local/*
+backup-remote/*
+restore-output/*
+!backup-local/.gitkeep
+!backup-remote/.gitkeep
+!restore-output/.gitkeep

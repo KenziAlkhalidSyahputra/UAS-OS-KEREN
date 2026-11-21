@@ -1,1 +1,38 @@
+services:
+  demo-service:
+    build: ./service
+    container_name: sysbackup-demo-service
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /var/run/demo-service/healthy"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    volumes:
+      - ./data-simulasi:/opt/demo-data
+      - service-status:/var/run/demo-service
+    networks:
+      - sysbackup-net
+    mem_limit: 128m
+    cpus: 0.25
 
+  backup-server:
+    build: ./backup-server
+    container_name: sysbackup-backup-server
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:2222:22"
+    volumes:
+      - ./backup-remote:/home/backupuser/incoming
+      - ./config/ssh/authorized_keys:/config/authorized_keys:ro
+    networks:
+      - sysbackup-net
+    mem_limit: 128m
+    cpus: 0.25
+
+volumes:
+  service-status:
+
+networks:
+  sysbackup-net:
+    driver: bridge
