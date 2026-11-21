@@ -1,3 +1,7 @@
+#!/bin/sh
+# entrypoint backup-server: siapkan authorized_keys lalu jalankan sshd.
+# authorized_keys dari host di-mount read-only ke /config, lalu DISALIN ke ~/.ssh dengan
+# owner dan permission yang benar (sshd menolak file dengan owner/permission salah).
 set -eu
 
 KEYS_SRC=/config/authorized_keys
