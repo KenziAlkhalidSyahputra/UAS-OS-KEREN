@@ -43,7 +43,7 @@ fi
 cp "$KEY.pub" "$AUTH"                 
 chmod 600 "$KEY" "$AUTH"
 chmod 700 "$ROOT_DIR/config/ssh"
- start) ----
+ 
 if [ "$NEW_KEY" -eq 1 ] && command -v docker >/dev/null 2>&1 \
    && [ "$(container_status "$BACKUP_CONTAINER")" != "not-found" ]; then
   if docker compose -f "$ROOT_DIR/docker-compose.yml" up -d --force-recreate backup-server >/dev/null 2>&1; then
