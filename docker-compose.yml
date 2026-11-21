@@ -1,7 +1,7 @@
 services:
   demo-service:
     build: ./service
-    container_name: sysbackup-demo-service
+    container_name: systembackup-demo-service
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "test -f /var/run/demo-service/healthy"]
