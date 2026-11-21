@@ -18,7 +18,7 @@ services:
 
   backup-server:
     build: ./backup-server
-    container_name: sysbackup-backup-server
+    container_name: systembackup-backup-server
     restart: unless-stopped
     ports:
       - "127.0.0.1:2222:22"
